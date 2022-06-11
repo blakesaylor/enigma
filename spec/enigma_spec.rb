@@ -70,4 +70,11 @@ RSpec.describe Enigma do
       expect(@enigma.valid_key_digits?(key)).to eq false
     end
   end
+
+  describe '#create_5_length_key' do
+    it 'adds leading zeroes to a string if it is less than 5 characters' do
+      key = '715'
+      expect(@enigma.create_5_length_key(key)).to eq '00715'
+    end
+  end
 end
