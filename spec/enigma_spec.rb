@@ -185,4 +185,13 @@ RSpec.describe Enigma do
       expect(@enigma.get_shift_value(shifts, index)).to eq shifts[:b_shift]
     end
   end
+
+  describe '#encrypt_message' do
+    it 'can encrypt a message' do
+      message = 'hello world'
+      encrypted_message = 'keder ohulw'
+      shifts = { a_shift: 3, b_shift: 27, c_shift: 73, d_shift: 20 }
+      expect(@enigma.encrypt_message(shifts, message)).to eq encrypted_message
+    end
+  end
 end
