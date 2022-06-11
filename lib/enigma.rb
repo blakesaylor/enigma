@@ -75,4 +75,12 @@ class Enigma
     four_digit_offset = generate_four_digit_offset(numeric_date)
     offset_hash = generate_offset_keys_hash(four_digit_offset)
   end
+
+  def get_date_integer_array(user_date_input)
+    date_array = user_date_input.split('-')
+    day = date_array[0].to_i
+    month = date_array[1].to_i
+    year = date_array[2].to_i
+    output_array = [year, month, day]
+  end
 end
