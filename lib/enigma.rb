@@ -60,4 +60,13 @@ class Enigma
     squared_date = date_string.to_i ** 2
     four_digit_offset = squared_date.to_s[-4..-1]
   end
+
+  def generate_offset_keys_hash(four_digit_offset)
+    offset_hash = {
+      a_offset: four_digit_offset[0].to_i,
+      b_offset: four_digit_offset[1].to_i,
+      c_offset: four_digit_offset[2].to_i,
+      d_offset: four_digit_offset[3].to_i
+    }
+  end
 end
