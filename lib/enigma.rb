@@ -101,4 +101,14 @@ class Enigma
       d_shift: keys[:d_key] + offsets[:d_offset]
     }
   end
+
+  def rotate_to_change_char(shift, input_char)
+    output_char = input_char
+    if @character_list.include?(input_char)
+      index_value = @character_list.index(input_char)
+      rotated_char_list = @character_list.rotate(shift)
+      output_char = rotated_char_list[index_value]
+    end
+    output_char
+  end
 end
