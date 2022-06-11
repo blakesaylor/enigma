@@ -144,31 +144,32 @@ RSpec.describe Enigma do
     end
   end
 
-  describe '#rotate_to_change_char' do
+  describe '#get_new_char_by_shift' do
     it 'can rotate the character list instance variable to change a message character' do
       shift = 3
       input_char = 'h'
       output = 'k'
-      expect(@enigma.rotate_to_change_char(shift,input_char)).to eq output
+      expect(@enigma.get_new_char_by_shift(shift,input_char)).to eq output
       shift = 27
       input_char = 'e'
       output = 'e'
-      expect(@enigma.rotate_to_change_char(shift,input_char)).to eq output
+      expect(@enigma.get_new_char_by_shift(shift,input_char)).to eq output
       shift = 73
       input_char = 'l'
       output = 'd'
-      expect(@enigma.rotate_to_change_char(shift,input_char)).to eq output
+      expect(@enigma.get_new_char_by_shift(shift,input_char)).to eq output
     end
 
     it 'does not change a character that does not appear in the character list' do
       shift = 3
       input_char = '!'
       output = '!'
-      expect(@enigma.rotate_to_change_char(shift,input_char)).to eq output
+      expect(@enigma.get_new_char_by_shift(shift,input_char)).to eq output
       shift = 42
       input_char = '^'
       output = '^'
-      expect(@enigma.rotate_to_change_char(shift,input_char)).to eq output
+      expect(@enigma.get_new_char_by_shift(shift,input_char)).to eq output
+      # require 'pry'; binding.pry
     end
   end
 end
