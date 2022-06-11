@@ -84,4 +84,12 @@ RSpec.describe Enigma do
       expect(@enigma.generate_todays_date_string).to eq date_string
     end
   end
+
+  describe '#generate_four_digit_offset' do
+    it 'can generate a four digit offset (string) from a date' do
+      date = '040895'
+      date_offset = '1025'
+      expect(@enigma.generate_four_digit_offset(date)).to eq date_offset
+    end
+  end
 end
