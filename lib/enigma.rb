@@ -83,4 +83,12 @@ class Enigma
     year = date_array[2].to_i
     output_array = [year, month, day]
   end
+
+  def is_valid_date?(date_array)
+    if Date.valid_date?(date_array[0], date_array[1], date_array[2])
+      return true
+    else
+      return false
+    end
+  end
 end
