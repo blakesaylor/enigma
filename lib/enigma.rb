@@ -14,4 +14,13 @@ class Enigma
   def generate_random_key_string
     key = rand(0..99999).to_s.rjust(5, '0')
   end
+
+  def generate_keys_hash(key)
+    key_hash = {
+      a_key: key[0..1].to_i,
+      b_key: key[1..2].to_i,
+      c_key: key[2..3].to_i,
+      d_key: key[3..4].to_i
+    }
+  end
 end
