@@ -107,4 +107,10 @@ RSpec.describe Enigma do
       expect(offsets_hash.values).to eq [1, 0, 2, 5]
     end
   end
+
+  describe '#generate_random_offset_hash' do
+    it 'can generate a hash of offsets from no data in one step' do
+      expect(@enigma.generate_random_offset_hash).to be_a Hash
+    end
+  end
 end
