@@ -169,7 +169,38 @@ RSpec.describe Enigma do
       input_char = '^'
       output = '^'
       expect(@enigma.get_new_char_by_shift(shift,input_char)).to eq output
-      # require 'pry'; binding.pry
+    end
+  end
+
+  describe '#get_shift_value' do
+    it 'can return a shift value for a specified index position in a message' do
+      shifts = { a_shift: 3, b_shift: 27, c_shift: 73, d_shift: 20 }
+      index = 3
+      expect(@enigma.get_shift_value(shifts, index)).to eq shifts[:d_shift]
+      index = 12
+      expect(@enigma.get_shift_value(shifts, index)).to eq shifts[:a_shift]
+      index = 14
+      expect(@enigma.get_shift_value(shifts, index)).to eq shifts[:c_shift]
+      index = 1
+      expect(@enigma.get_shift_value(shifts, index)).to eq shifts[:b_shift]
+    end
+  end
+
+  describe '#encrypt_message' do
+    it 'can encrypt a message' do
+      message = 'hello world'
+      encrypted_message = 'keder ohulw'
+      shifts = { a_shift: 3, b_shift: 27, c_shift: 73, d_shift: 20 }
+      expect(@enigma.encrypt_message(shifts, message)).to eq encrypted_message
+    end
+  end
+
+  describe '#decrypt_message do' do
+    it 'can decrypt a message' do
+      message = 'hello world'
+      encrypted_message = 'keder ohulw'
+      shifts = { a_shift: 3, b_shift: 27, c_shift: 73, d_shift: 20 }
+      expect(@enigma.decrypt_message(shifts, encrypted_message)).to eq message
     end
   end
 end
