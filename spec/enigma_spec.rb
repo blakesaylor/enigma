@@ -38,4 +38,12 @@ RSpec.describe Enigma do
       expect(key_hash.values).to eq [02, 27, 71, 15]
     end
   end
+
+  describe '#generate_random_key_hash' do
+    it 'can generate a hash of random keys in one step' do
+      key_hash = @enigma.generate_random_key_hash
+      expect(key_hash).to be_a Hash
+      expect(key_hash.values.count).to eq 4
+    end
+  end
 end
