@@ -137,24 +137,9 @@ RSpec.describe Enigma do
 
   describe '#generate_shifts_hash' do
     it 'can create a hash of final shifts' do
-      keys = {
-        a_key: 02,
-        b_key: 27,
-        c_key: 71,
-        d_key: 15
-      }
-      offsets = {
-        a_offset: 1,
-        b_offset: 0,
-        c_offset: 2,
-        d_offset: 5
-      }
-      shifts = {
-        a_shift: 3,
-        b_shift: 27,
-        c_shift: 73,
-        d_shift: 20
-      }
+      keys = { a_key: 02, b_key: 27, c_key: 71, d_key: 15 }
+      offsets = { a_offset: 1, b_offset: 0, c_offset: 2, d_offset: 5 }
+      shifts = { a_shift: 3, b_shift: 27, c_shift: 73, d_shift: 20 }
       expect(@enigma.generate_shifts_hash(keys, offsets)).to eq shifts
     end
   end
