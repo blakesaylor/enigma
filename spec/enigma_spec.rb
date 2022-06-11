@@ -121,4 +121,13 @@ RSpec.describe Enigma do
       expect(array).to eq [1995, 8, 4]
     end
   end
+
+  describe '#is_valid_date?' do
+    it 'can check if a date array makes up a valid date' do
+      array = [1995, 8, 4]
+      expect(@enigma.is_valid_date?(array)).to eq true
+      array = [2022, 13, 5]
+      expect(@enigma.is_valid_date?(array)).to eq false
+    end
+  end
 end
