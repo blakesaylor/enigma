@@ -13,6 +13,10 @@ RSpec.describe Enigma do
     it 'has an empty message string' do
       expect(@enigma.message).to eq ''
     end
+
+    it 'has a list of all possible characters to mutate' do
+      expect(@enigma.character_list.count).to eq 27
+    end
   end
 
   describe '#parse_message' do
