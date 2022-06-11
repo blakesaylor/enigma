@@ -50,4 +50,45 @@ class Enigma
   def create_5_length_key(key)
     key.rjust(5, '0')
   end
+
+  def generate_todays_date_string
+    date_object = Date.today
+    date_string = date_object.strftime('%d%m%y')
+  end
+
+  def generate_four_digit_offset(date_string)
+    squared_date = date_string.to_i ** 2
+    four_digit_offset = squared_date.to_s[-4..-1]
+  end
+
+  def generate_offset_keys_hash(four_digit_offset)
+    offset_hash = {
+      a_offset: four_digit_offset[0].to_i,
+      b_offset: four_digit_offset[1].to_i,
+      c_offset: four_digit_offset[2].to_i,
+      d_offset: four_digit_offset[3].to_i
+    }
+  end
+
+  def generate_random_offset_hash
+    numeric_date = generate_todays_date_string
+    four_digit_offset = generate_four_digit_offset(numeric_date)
+    offset_hash = generate_offset_keys_hash(four_digit_offset)
+  end
+
+  def get_date_integer_array(user_date_input)
+    date_array = user_date_input.split('-')
+    day = date_array[0].to_i
+    month = date_array[1].to_i
+    year = date_array[2].to_i
+    output_array = [year, month, day]
+  end
+
+  def is_valid_date?(date_array)
+    if Date.valid_date?(date_array[0], date_array[1], date_array[2])
+      return true
+    else
+      return false
+    end
+  end
 end
