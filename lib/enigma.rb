@@ -23,4 +23,9 @@ class Enigma
       d_key: key[3..4].to_i
     }
   end
+
+  def generate_random_key_hash
+    five_digit_key = generate_random_key_string
+    key_hash = generate_keys_hash(five_digit_key)
+  end
 end
