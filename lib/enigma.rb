@@ -1,9 +1,10 @@
 require 'date'
 
 class Enigma
-  attr_reader :message
+  attr_reader :message, :character_list
   def initialize
     @message = ''
+    @character_list = ("a".."z").to_a << " "
   end
 
   def parse_message(filename)
