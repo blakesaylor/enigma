@@ -113,4 +113,12 @@ RSpec.describe Enigma do
       expect(@enigma.generate_random_offset_hash).to be_a Hash
     end
   end
+
+  describe '#get_date_integer_array' do
+    it 'can get an array in the form of year, month, day from a string input' do
+      input = '04-08-1995'
+      array = @enigma.get_date_integer_array(input)
+      expect(array).to eq [1995, 8, 4]
+    end
+  end
 end
