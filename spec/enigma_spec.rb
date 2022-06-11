@@ -77,4 +77,11 @@ RSpec.describe Enigma do
       expect(@enigma.create_5_length_key(key)).to eq '00715'
     end
   end
+
+  describe '#generate_todays_date_string' do
+    it 'can generate a string of the current date' do
+      date_string = Date.today.strftime('%d%m%y')
+      expect(@enigma.generate_todays_date_string).to eq date_string
+    end
+  end
 end
