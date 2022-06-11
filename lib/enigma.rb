@@ -124,4 +124,14 @@ class Enigma
     end
     shift_value
   end
+
+  def encrypt_message(shift_hash, message)
+    index = 0
+    while index <= message.length - 1
+      shift_value = get_shift_value(shift_hash, index)
+      message[index] = get_new_char_by_shift(shift_value, message[index])
+      index += 1
+    end
+    message
+  end
 end
