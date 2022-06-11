@@ -91,4 +91,13 @@ class Enigma
       return false
     end
   end
+
+  def generate_shifts_hash(keys, offsets)
+    final_shifts = {
+      a_shift: keys[:a_key] + offsets[:a_offset],
+      b_shift: keys[:b_key] + offsets[:b_offset],
+      c_shift: keys[:c_key] + offsets[:c_offset],
+      d_shift: keys[:d_key] + offsets[:d_offset]
+    }
+  end
 end
