@@ -46,4 +46,16 @@ RSpec.describe Enigma do
       expect(key_hash.values.count).to eq 4
     end
   end
+
+  describe '#valid_key_length?' do
+    it 'returns true if the length of a key is valid (five chars)' do
+      key = '02715'
+      expect(@enigma.valid_key_length?(key)).to eq true
+    end
+
+    it 'returns false if the length of a key is invalid' do
+      key = '0271'
+      expect(@enigma.valid_key_length?(key)).to eq false
+    end
+  end
 end
