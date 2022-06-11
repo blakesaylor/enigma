@@ -31,7 +31,7 @@ RSpec.describe Enigma do
   end
 
   describe '#generate_keys_hash' do
-    it 'can generate a hash or A through D keys' do
+    it 'can generate a hash of A through D keys' do
       key = '02715'
       key_hash = @enigma.generate_keys_hash(key)
       expect(key_hash.keys).to eq [:a_key, :b_key, :c_key, :d_key]
@@ -90,6 +90,21 @@ RSpec.describe Enigma do
       date = '040895'
       date_offset = '1025'
       expect(@enigma.generate_four_digit_offset(date)).to eq date_offset
+    end
+  end
+
+  describe '#generate_offset_keys_hash' do
+    it 'can generate a hash of offset A through D keys' do
+      date_offset = '1025'
+      offsets_hash = @enigma.generate_offset_keys_hash(date_offset)
+      expect(offsets_hash).to be_a Hash
+      expect(offsets_hash.keys).to eq [
+        :a_offset,
+        :b_offset,
+        :c_offset,
+        :d_offset
+      ]
+      expect(offsets_hash.values).to eq [1, 0, 2, 5]
     end
   end
 end
