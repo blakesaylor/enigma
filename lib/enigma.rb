@@ -69,4 +69,10 @@ class Enigma
       d_offset: four_digit_offset[3].to_i
     }
   end
+
+  def generate_random_offset_hash
+    numeric_date = generate_todays_date_string
+    four_digit_offset = generate_four_digit_offset(numeric_date)
+    offset_hash = generate_offset_keys_hash(four_digit_offset)
+  end
 end
