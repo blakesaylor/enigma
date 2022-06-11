@@ -55,4 +55,9 @@ class Enigma
     date_object = Date.today
     date_string = date_object.strftime('%d%m%y')
   end
+
+  def generate_four_digit_offset(date_string)
+    squared_date = date_string.to_i ** 2
+    four_digit_offset = squared_date.to_s[-4..-1]
+  end
 end
