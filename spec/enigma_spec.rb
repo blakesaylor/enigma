@@ -58,4 +58,16 @@ RSpec.describe Enigma do
       expect(@enigma.valid_key_length?(key)).to eq false
     end
   end
+
+  describe '#valid_key_digits?' do
+    it 'returns true if a key is made up of all numbers' do
+      key = '02715'
+      expect(@enigma.valid_key_digits?(key)).to eq true
+    end
+
+    it 'returns false if a key is not made up of all numbers' do
+      key = 'blake'
+      expect(@enigma.valid_key_digits?(key)).to eq false
+    end
+  end
 end
