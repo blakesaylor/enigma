@@ -50,4 +50,9 @@ class Enigma
   def create_5_length_key(key)
     key.rjust(5, '0')
   end
+
+  def generate_todays_date_string
+    date_object = Date.today
+    date_string = date_object.strftime('%d%m%y')
+  end
 end
