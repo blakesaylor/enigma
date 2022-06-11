@@ -28,4 +28,12 @@ class Enigma
     five_digit_key = generate_random_key_string
     key_hash = generate_keys_hash(five_digit_key)
   end
+
+  def valid_key_length?(key)
+    key_chars = key.chars
+    if key_chars.length != 5
+      return false
+    end
+    true
+  end
 end
