@@ -36,4 +36,14 @@ class Enigma
     end
     true
   end
+
+  def valid_key_digits?(key)
+    key_chars = key.chars
+    key_chars.each do |char|
+      if !char.ord.between?(48,57)
+        return false
+      end
+    end
+    true
+  end
 end
