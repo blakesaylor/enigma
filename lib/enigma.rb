@@ -46,4 +46,8 @@ class Enigma
     end
     true
   end
+
+  def create_5_length_key(key)
+    key.rjust(5, '0')
+  end
 end
