@@ -111,4 +111,17 @@ class Enigma
     end
     new_char
   end
+
+  def get_shift_value(shift_hash, index)
+    if (index % 4) == 0
+      shift_value = shift_hash[:a_shift]
+    elsif (index % 4) == 1
+      shift_value = shift_hash[:b_shift]
+    elsif (index % 4) == 2
+      shift_value = shift_hash[:c_shift]
+    elsif (index % 4) == 3
+      shift_value = shift_hash[:d_shift]
+    end
+    shift_value
+  end
 end
