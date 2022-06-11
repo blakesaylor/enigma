@@ -1,14 +1,15 @@
 require 'date'
 
 class Enigma
-  attr_reader :message
+  attr_reader :message, :character_list
   def initialize
     @message = ''
+    @character_list = ("a".."z").to_a << " "
   end
 
   def parse_message(filename)
     file = File.new(filename)
-    @message = file.read
+    @message = file.read.downcase
   end
 
   def generate_random_key_string
@@ -90,5 +91,24 @@ class Enigma
     else
       return false
     end
+  end
+
+  def generate_shifts_hash(keys, offsets)
+    final_shifts = {
+      a_shift: keys[:a_key] + offsets[:a_offset],
+      b_shift: keys[:b_key] + offsets[:b_offset],
+      c_shift: keys[:c_key] + offsets[:c_offset],
+      d_shift: keys[:d_key] + offsets[:d_offset]
+    }
+  end
+
+  def get_new_char_by_shift(shift, input_char)
+    new_char = input_char
+    if @character_list.include?(input_char)
+      index_value = @character_list.index(input_char)
+      rotated_char_list = @character_list.rotate(shift)
+      new_char = rotated_char_list[index_value]
+    end
+    new_char
   end
 end

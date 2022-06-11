@@ -13,6 +13,10 @@ RSpec.describe Enigma do
     it 'has an empty message string' do
       expect(@enigma.message).to eq ''
     end
+
+    it 'has a list of all possible characters to mutate' do
+      expect(@enigma.character_list.count).to eq 27
+    end
   end
 
   describe '#parse_message' do
@@ -128,6 +132,44 @@ RSpec.describe Enigma do
       expect(@enigma.is_valid_date?(array)).to eq true
       array = [2022, 13, 5]
       expect(@enigma.is_valid_date?(array)).to eq false
+    end
+  end
+
+  describe '#generate_shifts_hash' do
+    it 'can create a hash of final shifts' do
+      keys = { a_key: 02, b_key: 27, c_key: 71, d_key: 15 }
+      offsets = { a_offset: 1, b_offset: 0, c_offset: 2, d_offset: 5 }
+      shifts = { a_shift: 3, b_shift: 27, c_shift: 73, d_shift: 20 }
+      expect(@enigma.generate_shifts_hash(keys, offsets)).to eq shifts
+    end
+  end
+
+  describe '#get_new_char_by_shift' do
+    it 'can rotate the character list instance variable to change a message character' do
+      shift = 3
+      input_char = 'h'
+      output = 'k'
+      expect(@enigma.get_new_char_by_shift(shift,input_char)).to eq output
+      shift = 27
+      input_char = 'e'
+      output = 'e'
+      expect(@enigma.get_new_char_by_shift(shift,input_char)).to eq output
+      shift = 73
+      input_char = 'l'
+      output = 'd'
+      expect(@enigma.get_new_char_by_shift(shift,input_char)).to eq output
+    end
+
+    it 'does not change a character that does not appear in the character list' do
+      shift = 3
+      input_char = '!'
+      output = '!'
+      expect(@enigma.get_new_char_by_shift(shift,input_char)).to eq output
+      shift = 42
+      input_char = '^'
+      output = '^'
+      expect(@enigma.get_new_char_by_shift(shift,input_char)).to eq output
+      # require 'pry'; binding.pry
     end
   end
 end
