@@ -10,24 +10,26 @@ class Enigma
     @date = generate_todays_date_string
   end
 
-  def encrypt_message(shift_hash, message)
+  def encrypt_message(shift_hash, input_message)
     index = 0
-    while index <= message.length - 1
+    output_message = ''
+    while index <= input_message.length - 1
       shift_value = get_shift_value(shift_hash, index)
-      message[index] = get_new_char_by_shift(shift_value, message[index])
+      output_message[index] = get_new_char_by_shift(shift_value, input_message[index])
       index += 1
     end
-    message
+    output_message
   end
 
-  def decrypt_message(shift_hash, message)
+  def decrypt_message(shift_hash, input_message)
     index = 0
-    while index <= message.length - 1
+    output_message = ''
+    while index <= input_message.length - 1
       shift_value = -get_shift_value(shift_hash, index)
-      message[index] = get_new_char_by_shift(shift_value, message[index])
+      output_message[index] = get_new_char_by_shift(shift_value, input_message[index])
       index += 1
     end
-    message
+    output_message
   end
 
   def encrypt(message, key = @key, date = @date)

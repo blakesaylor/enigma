@@ -25,7 +25,7 @@ RSpec.describe Enigma do
     it 'has a list of 27 characters (a through z and space)' do
       expect(@enigma.character_list.length).to eq 27
       expect(@enigma.character_list).to be_a Array
-      expect(@enigma.character_list.last).to eq " "
+      expect(@enigma.character_list.last).to eq ' '
     end
   end
 
@@ -57,20 +57,18 @@ RSpec.describe Enigma do
 
   describe '#generate_random_key_hash' do
     it 'can generate a hash of random keys in one step' do
-      stub = {
+      expected_hash = {
         a_key: 02,
         b_key: 27,
         c_key: 71,
         d_key: 15
       }
-      expected_keys = [:a_key, :b_key, :c_key, :d_key]
-      expected_values = [2, 27, 71, 15]
-      allow(@enigma).to receive(:generate_random_key_hash).and_return(stub)
+      allow(@enigma).to receive(:generate_random_key_string).and_return('02715')
       expect(@enigma.generate_random_key_hash).to be_a Hash
       expect(@enigma.generate_random_key_hash.keys.count).to eq 4
       expect(@enigma.generate_random_key_hash.values.count).to eq 4
-      expect(@enigma.generate_random_key_hash.keys).to eq expected_keys
-      expect(@enigma.generate_random_key_hash.values).to eq expected_values
+      expect(@enigma.generate_random_key_hash.keys).to eq expected_hash.keys
+      expect(@enigma.generate_random_key_hash.values).to eq expected_hash.values
     end
   end
 
@@ -194,23 +192,37 @@ RSpec.describe Enigma do
 
   describe '#encrypt' do
     it 'can encrypt a message and write it to a file' do
-      message = 'hello world'
+      input_message = 'hello world'
       key = '02715'
       date = '040895'
-      @enigma.encrypt(message, key, date)
+      output_message = 'keder ohulw'
+      expected_output = {
+        encryption: output_message,
+        key: key,
+        date: date
+      }
+      @enigma.encrypt(input_message, key, date)
       output_file = File.open('encrypted.txt', 'r')
-      expect(output_file.read).to eq 'keder ohulw'
+      expect(output_file.read).to eq output_message
+      expect(@enigma.encrypt(input_message, key, date)).to eq expected_output
     end
   end
 
   describe '#decrypt' do
     it 'can decrypt a message and write it to a file' do
-      message = 'keder ohulw'
+      input_message = 'keder ohulw'
       key = '02715'
       date = '040895'
-      @enigma.decrypt(message, key, date)
+      output_message = 'hello world'
+      expected_output = {
+        decryption: output_message,
+        key: key,
+        date: date
+      }
+      @enigma.decrypt(input_message, key, date)
       output_file = File.open('decrypted.txt', 'r')
-      expect(output_file.read).to eq 'hello world'
+      expect(output_file.read).to eq output_message
+      expect(@enigma.decrypt(input_message, key, date)).to eq expected_output
     end
   end
 end
