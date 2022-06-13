@@ -25,7 +25,7 @@ RSpec.describe Enigma do
     it 'has a list of 27 characters (a through z and space)' do
       expect(@enigma.character_list.length).to eq 27
       expect(@enigma.character_list).to be_a Array
-      expect(@enigma.character_list.last).to eq " "
+      expect(@enigma.character_list.last).to eq ' '
     end
   end
 
