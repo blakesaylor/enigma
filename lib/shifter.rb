@@ -7,7 +7,7 @@ module Shifter
 
   def parse_message(filename)
     file = File.new(filename)
-    @message = file.read.downcase
+    message = file.read.downcase
   end
 
   def generate_random_key_string

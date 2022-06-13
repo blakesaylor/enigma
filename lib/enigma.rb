@@ -4,12 +4,6 @@ require './lib/shifter'
 class Enigma
   include Shifter
 
-  attr_reader :message
-
-  def initialize
-    @message = ''
-  end
-
   def encrypt_message(shift_hash, message)
     index = 0
     while index <= message.length - 1
