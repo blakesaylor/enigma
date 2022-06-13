@@ -10,10 +10,6 @@ RSpec.describe Enigma do
       expect(@enigma).to be_a Enigma
     end
 
-    it 'has an empty message string' do
-      expect(@enigma.message).to eq ''
-    end
-
     it 'has a list of all possible characters to mutate' do
       expect(@enigma.character_list.count).to eq 27
     end
@@ -21,8 +17,9 @@ RSpec.describe Enigma do
 
   describe '#parse_message' do
     it 'can parse a message from a file' do
-      @enigma.parse_message('message.txt')
-      expect(@enigma.message).to eq 'hello world'
+      filename = 'message.txt'
+      expected = 'hello world'
+      expect(@enigma.parse_message(filename)).to eq 'hello world'
     end
   end
 
