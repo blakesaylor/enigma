@@ -118,22 +118,35 @@ RSpec.describe Enigma do
     end
   end
 
-  describe '#get_date_integer_array' do
-    it 'can get an array in the form of year, month, day from a string input' do
-      input = '04-08-1995'
-      array = @enigma.get_date_integer_array(input)
-      expect(array).to eq [1995, 8, 4]
+  describe '#generate_offset_keys_hash_from_date' do
+    it 'can generate a offset keys hash from a user date input' do
+      date = '040895'
+      expected = {
+        a_offset: 1,
+        b_offset: 0,
+        c_offset: 2,
+        d_offset: 5
+      }
+      expect(@enigma.generate_offset_keys_hash_from_date(date)).to eq expected
     end
   end
 
-  describe '#is_valid_date?' do
-    it 'can check if a date array makes up a valid date' do
-      array = [1995, 8, 4]
-      expect(@enigma.is_valid_date?(array)).to eq true
-      array = [2022, 13, 5]
-      expect(@enigma.is_valid_date?(array)).to eq false
-    end
-  end
+  # describe '#get_date_integer_array' do
+  #   it 'can get an array in the form of year, month, day from a string input' do
+  #     input = '04-08-1995'
+  #     array = @enigma.get_date_integer_array(input)
+  #     expect(array).to eq [1995, 8, 4]
+  #   end
+  # end
+
+  # describe '#is_valid_date?' do
+  #   it 'can check if a date array makes up a valid date' do
+  #     array = [1995, 8, 4]
+  #     expect(@enigma.is_valid_date?(array)).to eq true
+  #     array = [2022, 13, 5]
+  #     expect(@enigma.is_valid_date?(array)).to eq false
+  #   end
+  # end
 
   describe '#generate_shifts_hash' do
     it 'can create a hash of final shifts' do
@@ -195,12 +208,34 @@ RSpec.describe Enigma do
     end
   end
 
-  describe '#decrypt_message do' do
+  describe '#decrypt_message' do
     it 'can decrypt a message' do
       message = 'hello world'
       encrypted_message = 'keder ohulw'
       shifts = { a_shift: 3, b_shift: 27, c_shift: 73, d_shift: 20 }
       expect(@enigma.decrypt_message(shifts, encrypted_message)).to eq message
+    end
+  end
+
+  describe '#encrypt' do
+    it 'can encrypt a message and write it to a file' do
+      message = 'hello world'
+      key = '02715'
+      date = '040895'
+      @enigma.encrypt(message, key, date)
+      output_file = File.open('encrypted.txt', 'r')
+      expect(output_file.read).to eq 'keder ohulw'
+    end
+  end
+
+  describe '#decrypt' do
+    it 'can decrypt a message and write it to a file' do
+      message = 'keder ohulw'
+      key = '02715'
+      date = '040895'
+      @enigma.decrypt(message, key, date)
+      output_file = File.open('decrypted.txt', 'r')
+      expect(output_file.read).to eq 'hello world'
     end
   end
 end
