@@ -39,9 +39,10 @@ RSpec.describe Enigma do
 
   describe '#generate_random_key_string' do
     it 'can generate a random five character key string with leading zeroes' do
-      key = @enigma.generate_random_key_string
-      expect(key).to be_a String
-      expect(key.length).to eq 5
+      allow(@enigma).to receive(:generate_random_key_string).and_return('12345')
+      expect(@enigma.generate_random_key_string).to be_a String
+      expect(@enigma.generate_random_key_string.length).to eq 5
+      expect(@enigma.generate_random_key_string).to eq '12345'
     end
   end
 
@@ -56,9 +57,20 @@ RSpec.describe Enigma do
 
   describe '#generate_random_key_hash' do
     it 'can generate a hash of random keys in one step' do
-      key_hash = @enigma.generate_random_key_hash
-      expect(key_hash).to be_a Hash
-      expect(key_hash.values.count).to eq 4
+      stub = {
+        a_key: 02,
+        b_key: 27,
+        c_key: 71,
+        d_key: 15
+      }
+      expected_keys = [:a_key, :b_key, :c_key, :d_key]
+      expected_values = [2, 27, 71, 15]
+      allow(@enigma).to receive(:generate_random_key_hash).and_return(stub)
+      expect(@enigma.generate_random_key_hash).to be_a Hash
+      expect(@enigma.generate_random_key_hash.keys.count).to eq 4
+      expect(@enigma.generate_random_key_hash.values.count).to eq 4
+      expect(@enigma.generate_random_key_hash.keys).to eq expected_keys
+      expect(@enigma.generate_random_key_hash.values).to eq expected_values
     end
   end
 
