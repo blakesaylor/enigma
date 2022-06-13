@@ -112,9 +112,9 @@ RSpec.describe Enigma do
     end
   end
 
-  describe '#generate_random_offset_hash' do
+  describe '#generate_todays_offset_hash' do
     it 'can generate a hash of offsets from no data in one step' do
-      expect(@enigma.generate_random_offset_hash).to be_a Hash
+      expect(@enigma.generate_todays_offset_hash).to be_a Hash
     end
   end
 
