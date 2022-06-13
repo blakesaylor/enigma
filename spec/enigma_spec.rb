@@ -21,6 +21,13 @@ RSpec.describe Enigma do
     end
   end
 
+  describe '#character_list' do
+    it 'has a list of 27 characters (a through z and space)' do
+      expect(@enigma.character_list.length).to eq 27
+      expect(@enigma.character_list).to be_a Array
+    end
+  end
+
   describe '#parse_message' do
     it 'can parse a message from a file' do
       filename = 'message.txt'
