@@ -3,6 +3,8 @@ require './lib/shifter'
 
 class Enigma
   include Shifter
+  attr_reader :key, :date
+
   def initialize
     @key = generate_random_key_string
     @date = generate_todays_date_string
