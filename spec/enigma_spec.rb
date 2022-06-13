@@ -208,13 +208,34 @@ RSpec.describe Enigma do
     end
   end
 
-  describe '#decrypt_message do' do
+  describe '#decrypt_message' do
     it 'can decrypt a message' do
       message = 'hello world'
       encrypted_message = 'keder ohulw'
       shifts = { a_shift: 3, b_shift: 27, c_shift: 73, d_shift: 20 }
       expect(@enigma.decrypt_message(shifts, encrypted_message)).to eq message
-      # require 'pry'; binding.pry
+    end
+  end
+
+  describe '#encrypt' do
+    it 'can encrypt a message and write it to a file' do
+      message = 'hello world'
+      key = '02715'
+      date = '040895'
+      @enigma.encrypt(message, key, date)
+      output_file = File.open('encrypted.txt', 'r')
+      expect(output_file.read).to eq 'keder ohulw'
+    end
+  end
+
+  describe '#decrypt' do
+    it 'can decrypt a message and write it to a file' do
+      message = 'keder ohulw'
+      key = '02715'
+      date = '040895'
+      @enigma.decrypt(message, key, date)
+      output_file = File.open('decrypted.txt', 'r')
+      expect(output_file.read).to eq 'hello world'
     end
   end
 end
