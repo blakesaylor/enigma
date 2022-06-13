@@ -3,6 +3,10 @@ require './lib/shifter'
 
 class Enigma
   include Shifter
+  def initialize
+    @key = generate_random_key_string
+    @date = generate_todays_date_string
+  end
 
   def encrypt_message(shift_hash, message)
     index = 0
@@ -24,7 +28,7 @@ class Enigma
     message
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key = @key, date = @date)
     keys = generate_keys_hash(key)
     offsets = generate_offset_keys_hash_from_date(date)
     shifts = generate_shifts_hash(keys, offsets)
@@ -33,10 +37,9 @@ class Enigma
     encrypted_file.write(encrypted_message)
     encrypted_file.close
     encrypted_output_hash = { encryption: encrypted_message, key: key, date: date }
-    puts encrypted_output_hash
   end
 
-  def decrypt(message, key, date)
+  def decrypt(message, key = @key, date = @date)
     keys = generate_keys_hash(key)
     offsets = generate_offset_keys_hash_from_date(date)
     shifts = generate_shifts_hash(keys, offsets)
@@ -45,6 +48,5 @@ class Enigma
     decrypted_file.write(decrypted_message)
     decrypted_file.close
     decrypted_output_hash = { decryption: decrypted_message, key: key, date: date }
-    puts decrypted_output_hash
   end
 end
