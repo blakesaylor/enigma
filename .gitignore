@@ -5,3 +5,5 @@ Gemfile
 Rakefile
 utility_scripts/
 Gemfile.lock
+decrypted.txt
+encrypted.txt
