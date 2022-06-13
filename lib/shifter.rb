@@ -70,21 +70,31 @@ module Shifter
     offset_hash = generate_offset_keys_hash(four_digit_offset)
   end
 
-  def get_date_integer_array(user_date_input)
-    date_array = user_date_input.split('-')
-    day = date_array[0].to_i
-    month = date_array[1].to_i
-    year = date_array[2].to_i
-    output_array = [year, month, day]
+  def generate_offset_keys_hash_from_date(date)
+    # date in format of '040895'
+    # date_array = get_date_integer_array(date)
+    # if is_valid_date?(date_array)
+      four_digit_offset = generate_four_digit_offset(date)
+      offset_keys_hash = generate_offset_keys_hash(four_digit_offset)
+    # else
+    #   return "Invalid date input."
+    # end
   end
 
-  def is_valid_date?(date_array)
-    if Date.valid_date?(date_array[0], date_array[1], date_array[2])
-      return true
-    else
-      return false
-    end
-  end
+  # def get_date_integer_array(user_date_input)
+  #   day = user_date_input[0..1].to_i
+  #   month = user_date_input[2..3].to_i
+  #   year = user_date_input[4..5].to_i
+  #   output_array = [year, month, day]
+  # end
+
+  # def is_valid_date?(date_array)
+  #   if Date.valid_date?(date_array[0], date_array[1], date_array[2])
+  #     return true
+  #   else
+  #     return false
+  #   end
+  # end
 
   def generate_shifts_hash(keys, offsets)
     final_shifts = {
