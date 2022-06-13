@@ -48,36 +48,36 @@ RSpec.describe Enigma do
     end
   end
 
-  describe '#valid_key_length?' do
-    it 'returns true if the length of a key is valid (five chars)' do
-      key = '02715'
-      expect(@enigma.valid_key_length?(key)).to eq true
-    end
-
-    it 'returns false if the length of a key is invalid' do
-      key = '0271'
-      expect(@enigma.valid_key_length?(key)).to eq false
-    end
-  end
-
-  describe '#valid_key_digits?' do
-    it 'returns true if a key is made up of all numbers' do
-      key = '02715'
-      expect(@enigma.valid_key_digits?(key)).to eq true
-    end
-
-    it 'returns false if a key is not made up of all numbers' do
-      key = 'blake'
-      expect(@enigma.valid_key_digits?(key)).to eq false
-    end
-  end
-
-  describe '#create_5_length_key' do
-    it 'adds leading zeroes to a string if it is less than 5 characters' do
-      key = '715'
-      expect(@enigma.create_5_length_key(key)).to eq '00715'
-    end
-  end
+  # describe '#valid_key_length?' do
+  #   it 'returns true if the length of a key is valid (five chars)' do
+  #     key = '02715'
+  #     expect(@enigma.valid_key_length?(key)).to eq true
+  #   end
+  #
+  #   it 'returns false if the length of a key is invalid' do
+  #     key = '0271'
+  #     expect(@enigma.valid_key_length?(key)).to eq false
+  #   end
+  # end
+  #
+  # describe '#valid_key_digits?' do
+  #   it 'returns true if a key is made up of all numbers' do
+  #     key = '02715'
+  #     expect(@enigma.valid_key_digits?(key)).to eq true
+  #   end
+  #
+  #   it 'returns false if a key is not made up of all numbers' do
+  #     key = 'blake'
+  #     expect(@enigma.valid_key_digits?(key)).to eq false
+  #   end
+  # end
+  #
+  # describe '#create_5_length_key' do
+  #   it 'adds leading zeroes to a string if it is less than 5 characters' do
+  #     key = '715'
+  #     expect(@enigma.create_5_length_key(key)).to eq '00715'
+  #   end
+  # end
 
   describe '#generate_todays_date_string' do
     it 'can generate a string of the current date' do

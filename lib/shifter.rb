@@ -28,27 +28,27 @@ module Shifter
     key_hash = generate_keys_hash(five_digit_key)
   end
 
-  def valid_key_length?(key)
-    key_chars = key.chars
-    if key_chars.length != 5
-      return false
-    end
-    true
-  end
-
-  def valid_key_digits?(key)
-    key_chars = key.chars
-    key_chars.each do |char|
-      if !char.ord.between?(48,57)
-        return false
-      end
-    end
-    true
-  end
-
-  def create_5_length_key(key)
-    key.rjust(5, '0')
-  end
+  # def valid_key_length?(key)
+  #   key_chars = key.chars
+  #   if key_chars.length != 5
+  #     return false
+  #   end
+  #   true
+  # end
+  #
+  # def valid_key_digits?(key)
+  #   key_chars = key.chars
+  #   key_chars.each do |char|
+  #     if !char.ord.between?(48,57)
+  #       return false
+  #     end
+  #   end
+  #   true
+  # end
+  # 
+  # def create_5_length_key(key)
+  #   key.rjust(5, '0')
+  # end
 
   def generate_todays_date_string
     date_object = Date.today
