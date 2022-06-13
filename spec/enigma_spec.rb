@@ -22,7 +22,7 @@ RSpec.describe Enigma do
   describe '#parse_message' do
     it 'can parse a message from a file' do
       @enigma.parse_message('message.txt')
-      expect(@enigma.message).to eq 'hello world end'
+      expect(@enigma.message).to eq 'hello world'
     end
   end
 
