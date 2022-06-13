@@ -10,8 +10,14 @@ RSpec.describe Enigma do
       expect(@enigma).to be_a Enigma
     end
 
-    it 'has a list of all possible characters to mutate' do
-      expect(@enigma.character_list.count).to eq 27
+    it 'has a randomly generated 5 character key string' do
+      expect(@enigma.key.length).to eq 5
+      expect(@enigma.key).to be_a String
+    end
+
+    it 'has a date string in the format of ddmmyy that is today' do
+      expect(@enigma.date.length).to eq 6
+      expect(@enigma.date).to be_a String
     end
   end
 
