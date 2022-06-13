@@ -4,11 +4,11 @@ require './lib/shifter'
 class Enigma
   include Shifter
 
-  attr_reader :message, :character_list
+  attr_reader :message
 
   def initialize
     @message = ''
-    @character_list = ("a".."z").to_a << " "
+    # @character_list = ("a".."z").to_a << " "
   end
 
   def parse_message(filename)
@@ -35,4 +35,8 @@ class Enigma
     end
     message
   end
+  #
+  # def encrypt(message, key, date)
+  #
+  # end
 end
