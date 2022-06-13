@@ -97,9 +97,9 @@ module Shifter
 
   def get_new_char_by_shift(shift, input_char)
     new_char = input_char
-    if @character_list.include?(input_char)
-      index_value = @character_list.index(input_char)
-      rotated_char_list = @character_list.rotate(shift)
+    if character_list.include?(input_char)
+      index_value = character_list.index(input_char)
+      rotated_char_list = character_list.rotate(shift)
       new_char = rotated_char_list[index_value]
     end
     new_char
