@@ -10,11 +10,6 @@ class Enigma
     @message = ''
   end
 
-  def parse_message(filename)
-    file = File.new(filename)
-    @message = file.read.downcase
-  end
-
   def encrypt_message(shift_hash, message)
     index = 0
     while index <= message.length - 1
