@@ -48,37 +48,6 @@ RSpec.describe Enigma do
     end
   end
 
-  # describe '#valid_key_length?' do
-  #   it 'returns true if the length of a key is valid (five chars)' do
-  #     key = '02715'
-  #     expect(@enigma.valid_key_length?(key)).to eq true
-  #   end
-  #
-  #   it 'returns false if the length of a key is invalid' do
-  #     key = '0271'
-  #     expect(@enigma.valid_key_length?(key)).to eq false
-  #   end
-  # end
-  #
-  # describe '#valid_key_digits?' do
-  #   it 'returns true if a key is made up of all numbers' do
-  #     key = '02715'
-  #     expect(@enigma.valid_key_digits?(key)).to eq true
-  #   end
-  #
-  #   it 'returns false if a key is not made up of all numbers' do
-  #     key = 'blake'
-  #     expect(@enigma.valid_key_digits?(key)).to eq false
-  #   end
-  # end
-  #
-  # describe '#create_5_length_key' do
-  #   it 'adds leading zeroes to a string if it is less than 5 characters' do
-  #     key = '715'
-  #     expect(@enigma.create_5_length_key(key)).to eq '00715'
-  #   end
-  # end
-
   describe '#generate_todays_date_string' do
     it 'can generate a string of the current date' do
       date_string = Date.today.strftime('%d%m%y')
@@ -127,23 +96,6 @@ RSpec.describe Enigma do
       expect(@enigma.generate_offset_keys_hash_from_date(date)).to eq expected
     end
   end
-
-  # describe '#get_date_integer_array' do
-  #   it 'can get an array in the form of year, month, day from a string input' do
-  #     input = '04-08-1995'
-  #     array = @enigma.get_date_integer_array(input)
-  #     expect(array).to eq [1995, 8, 4]
-  #   end
-  # end
-
-  # describe '#is_valid_date?' do
-  #   it 'can check if a date array makes up a valid date' do
-  #     array = [1995, 8, 4]
-  #     expect(@enigma.is_valid_date?(array)).to eq true
-  #     array = [2022, 13, 5]
-  #     expect(@enigma.is_valid_date?(array)).to eq false
-  #   end
-  # end
 
   describe '#generate_shifts_hash' do
     it 'can create a hash of final shifts' do
@@ -236,3 +188,50 @@ RSpec.describe Enigma do
     end
   end
 end
+
+# describe '#valid_key_length?' do
+#   it 'returns true if the length of a key is valid (five chars)' do
+#     key = '02715'
+#     expect(@enigma.valid_key_length?(key)).to eq true
+#   end
+#
+#   it 'returns false if the length of a key is invalid' do
+#     key = '0271'
+#     expect(@enigma.valid_key_length?(key)).to eq false
+#   end
+# end
+#
+# describe '#valid_key_digits?' do
+#   it 'returns true if a key is made up of all numbers' do
+#     key = '02715'
+#     expect(@enigma.valid_key_digits?(key)).to eq true
+#   end
+#
+#   it 'returns false if a key is not made up of all numbers' do
+#     key = 'blake'
+#     expect(@enigma.valid_key_digits?(key)).to eq false
+#   end
+# end
+#
+# describe '#create_5_length_key' do
+#   it 'adds leading zeroes to a string if it is less than 5 characters' do
+#     key = '715'
+#     expect(@enigma.create_5_length_key(key)).to eq '00715'
+#   end
+# end
+# describe '#get_date_integer_array' do
+#   it 'can get an array in the form of year, month, day from a string input' do
+#     input = '04-08-1995'
+#     array = @enigma.get_date_integer_array(input)
+#     expect(array).to eq [1995, 8, 4]
+#   end
+# end
+
+# describe '#is_valid_date?' do
+#   it 'can check if a date array makes up a valid date' do
+#     array = [1995, 8, 4]
+#     expect(@enigma.is_valid_date?(array)).to eq true
+#     array = [2022, 13, 5]
+#     expect(@enigma.is_valid_date?(array)).to eq false
+#   end
+# end
