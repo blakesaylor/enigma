@@ -10,10 +10,6 @@ RSpec.describe Enigma do
       expect(@enigma).to be_a Enigma
     end
 
-    it 'has an empty message string' do
-      expect(@enigma.message).to eq ''
-    end
-
     it 'has a list of all possible characters to mutate' do
       expect(@enigma.character_list.count).to eq 27
     end
@@ -21,8 +17,9 @@ RSpec.describe Enigma do
 
   describe '#parse_message' do
     it 'can parse a message from a file' do
-      @enigma.parse_message('message.txt')
-      expect(@enigma.message).to eq 'hello world end'
+      filename = 'message.txt'
+      expected = 'hello world'
+      expect(@enigma.parse_message(filename)).to eq 'hello world'
     end
   end
 
@@ -112,9 +109,9 @@ RSpec.describe Enigma do
     end
   end
 
-  describe '#generate_random_offset_hash' do
+  describe '#generate_todays_offset_hash' do
     it 'can generate a hash of offsets from no data in one step' do
-      expect(@enigma.generate_random_offset_hash).to be_a Hash
+      expect(@enigma.generate_todays_offset_hash).to be_a Hash
     end
   end
 

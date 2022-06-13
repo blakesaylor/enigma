@@ -5,6 +5,11 @@ module Shifter
     ("a".."z").to_a << " "
   end
 
+  def parse_message(filename)
+    file = File.new(filename)
+    message = file.read.downcase
+  end
+
   def generate_random_key_string
     key = rand(0..99999).to_s.rjust(5, '0')
   end
@@ -64,7 +69,7 @@ module Shifter
     }
   end
 
-  def generate_random_offset_hash
+  def generate_todays_offset_hash
     numeric_date = generate_todays_date_string
     four_digit_offset = generate_four_digit_offset(numeric_date)
     offset_hash = generate_offset_keys_hash(four_digit_offset)
