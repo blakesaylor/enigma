@@ -84,7 +84,6 @@ module Shifter
   end
 
   def get_shift_value(shift_hash, index)
-    shift_value = 0
     shift_value = shift_hash[:a_shift] if (index % 4) == 0
     shift_value = shift_hash[:b_shift] if (index % 4) == 1
     shift_value = shift_hash[:c_shift] if (index % 4) == 2
