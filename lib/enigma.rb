@@ -11,25 +11,21 @@ class Enigma
   end
 
   def encrypt_message(shift_hash, input_message)
-    index = 0
-    output_message = ''
-    while index <= input_message.length - 1
+    output_array = []
+    input_message.chars.each_with_index do |character, index|
       shift_value = get_shift_value(shift_hash, index)
-      output_message[index] = get_new_char_by_shift(shift_value, input_message[index])
-      index += 1
+      output_array << get_new_char_by_shift(shift_value, character)
     end
-    output_message
+    output_array.join
   end
 
   def decrypt_message(shift_hash, input_message)
-    index = 0
-    output_message = ''
-    while index <= input_message.length - 1
+    output_array = []
+    input_message.chars.each_with_index do |character, index|
       shift_value = -get_shift_value(shift_hash, index)
-      output_message[index] = get_new_char_by_shift(shift_value, input_message[index])
-      index += 1
+      output_array << get_new_char_by_shift(shift_value, character)
     end
-    output_message
+    output_array.join
   end
 
   def encrypt(message, key = @key, date = @date)
@@ -37,9 +33,6 @@ class Enigma
     offsets = generate_offset_keys_hash_from_date(date)
     shifts = generate_shifts_hash(keys, offsets)
     encrypted_message = encrypt_message(shifts, message)
-    encrypted_file = File.open('encrypted.txt', 'w')
-    encrypted_file.write(encrypted_message)
-    encrypted_file.close
     encrypted_output_hash = { encryption: encrypted_message, key: key, date: date }
   end
 
@@ -48,9 +41,6 @@ class Enigma
     offsets = generate_offset_keys_hash_from_date(date)
     shifts = generate_shifts_hash(keys, offsets)
     decrypted_message = decrypt_message(shifts, message)
-    decrypted_file = File.open('decrypted.txt', 'w')
-    decrypted_file.write(decrypted_message)
-    decrypted_file.close
     decrypted_output_hash = { decryption: decrypted_message, key: key, date: date }
   end
 end

@@ -10,6 +10,12 @@ module Shifter
     message = file.read.downcase
   end
 
+  def write_message(message, output_filename)
+    output_file = File.open(output_filename, 'w')
+    output_file.write(message)
+    output_file.close
+  end
+
   def generate_random_key_string
     key = rand(0..99999).to_s.rjust(5, '0')
   end
@@ -54,14 +60,8 @@ module Shifter
   end
 
   def generate_offset_keys_hash_from_date(date)
-    # date in format of '040895'
-    # date_array = get_date_integer_array(date)
-    # if is_valid_date?(date_array)
     four_digit_offset = generate_four_digit_offset(date)
     offset_keys_hash = generate_offset_keys_hash(four_digit_offset)
-    # else
-    #   return "Invalid date input."
-    # end
   end
 
   def generate_shifts_hash(keys, offsets)
@@ -84,52 +84,10 @@ module Shifter
   end
 
   def get_shift_value(shift_hash, index)
-    shift_value = 0
-    if (index % 4) == 0
-      shift_value = shift_hash[:a_shift]
-    elsif (index % 4) == 1
-      shift_value = shift_hash[:b_shift]
-    elsif (index % 4) == 2
-      shift_value = shift_hash[:c_shift]
-    elsif (index % 4) == 3
-      shift_value = shift_hash[:d_shift]
-    end
+    shift_value = shift_hash[:a_shift] if (index % 4) == 0
+    shift_value = shift_hash[:b_shift] if (index % 4) == 1
+    shift_value = shift_hash[:c_shift] if (index % 4) == 2
+    shift_value = shift_hash[:d_shift] if (index % 4) == 3
     shift_value
   end
 end
-
-# def valid_key_length?(key)
-#   key_chars = key.chars
-#   if key_chars.length != 5
-#     return false
-#   end
-#   true
-# end
-#
-# def valid_key_digits?(key)
-#   key_chars = key.chars
-#   key_chars.each do |char|
-#     if !char.ord.between?(48,57)
-#       return false
-#     end
-#   end
-#   true
-# end
-#
-# def create_5_length_key(key)
-#   key.rjust(5, '0')
-# end
-# def get_date_integer_array(user_date_input)
-#   day = user_date_input[0..1].to_i
-#   month = user_date_input[2..3].to_i
-#   year = user_date_input[4..5].to_i
-#   output_array = [year, month, day]
-# end
-
-# def is_valid_date?(date_array)
-#   if Date.valid_date?(date_array[0], date_array[1], date_array[2])
-#     return true
-#   else
-#     return false
-#   end
-# end
