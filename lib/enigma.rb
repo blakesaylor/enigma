@@ -37,9 +37,6 @@ class Enigma
     offsets = generate_offset_keys_hash_from_date(date)
     shifts = generate_shifts_hash(keys, offsets)
     encrypted_message = encrypt_message(shifts, message)
-    encrypted_file = File.open('encrypted.txt', 'w')
-    encrypted_file.write(encrypted_message)
-    encrypted_file.close
     encrypted_output_hash = { encryption: encrypted_message, key: key, date: date }
   end
 
@@ -48,9 +45,12 @@ class Enigma
     offsets = generate_offset_keys_hash_from_date(date)
     shifts = generate_shifts_hash(keys, offsets)
     decrypted_message = decrypt_message(shifts, message)
-    decrypted_file = File.open('decrypted.txt', 'w')
-    decrypted_file.write(decrypted_message)
-    decrypted_file.close
     decrypted_output_hash = { decryption: decrypted_message, key: key, date: date }
+  end
+
+  def write_message(message, output_filename)
+    output_file = File.open(output_filename, 'w')
+    output_file.write(message)
+    output_file.close
   end
 end
