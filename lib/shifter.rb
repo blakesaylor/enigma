@@ -10,6 +10,12 @@ module Shifter
     message = file.read.downcase
   end
 
+  def write_message(message, output_filename)
+    output_file = File.open(output_filename, 'w')
+    output_file.write(message)
+    output_file.close
+  end
+
   def generate_random_key_string
     key = rand(0..99999).to_s.rjust(5, '0')
   end
