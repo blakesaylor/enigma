@@ -47,10 +47,4 @@ class Enigma
     decrypted_message = decrypt_message(shifts, message)
     decrypted_output_hash = { decryption: decrypted_message, key: key, date: date }
   end
-
-  def write_message(message, output_filename)
-    output_file = File.open(output_filename, 'w')
-    output_file.write(message)
-    output_file.close
-  end
 end
