@@ -202,8 +202,6 @@ RSpec.describe Enigma do
         date: date
       }
       @enigma.encrypt(input_message, key, date)
-      output_file = File.open('encrypted.txt', 'r')
-      expect(output_file.read).to eq output_message
       expect(@enigma.encrypt(input_message, key, date)).to eq expected_output
     end
   end
@@ -220,9 +218,21 @@ RSpec.describe Enigma do
         date: date
       }
       @enigma.decrypt(input_message, key, date)
-      output_file = File.open('decrypted.txt', 'r')
-      expect(output_file.read).to eq output_message
       expect(@enigma.decrypt(input_message, key, date)).to eq expected_output
+    end
+  end
+
+  describe '#write_message' do
+    it 'can write a message to a defined filename' do
+      input_message = 'hello world'
+      key = '02715'
+      date = '040895'
+      output_message = 'keder ohulw'
+      output_filename = 'encrypted.txt'
+      @enigma.encrypt(input_message, key, date)
+      @enigma.write_message(output_message, output_filename)
+      output_file = File.open(output_filename, 'r')
+      expect(output_file.read).to eq output_message
     end
   end
 end
