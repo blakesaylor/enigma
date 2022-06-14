@@ -60,14 +60,8 @@ module Shifter
   end
 
   def generate_offset_keys_hash_from_date(date)
-    # date in format of '040895'
-    # date_array = get_date_integer_array(date)
-    # if is_valid_date?(date_array)
     four_digit_offset = generate_four_digit_offset(date)
     offset_keys_hash = generate_offset_keys_hash(four_digit_offset)
-    # else
-    #   return "Invalid date input."
-    # end
   end
 
   def generate_shifts_hash(keys, offsets)
