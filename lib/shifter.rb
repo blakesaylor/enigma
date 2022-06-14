@@ -97,39 +97,3 @@ module Shifter
     shift_value
   end
 end
-
-# def valid_key_length?(key)
-#   key_chars = key.chars
-#   if key_chars.length != 5
-#     return false
-#   end
-#   true
-# end
-#
-# def valid_key_digits?(key)
-#   key_chars = key.chars
-#   key_chars.each do |char|
-#     if !char.ord.between?(48,57)
-#       return false
-#     end
-#   end
-#   true
-# end
-#
-# def create_5_length_key(key)
-#   key.rjust(5, '0')
-# end
-# def get_date_integer_array(user_date_input)
-#   day = user_date_input[0..1].to_i
-#   month = user_date_input[2..3].to_i
-#   year = user_date_input[4..5].to_i
-#   output_array = [year, month, day]
-# end
-
-# def is_valid_date?(date_array)
-#   if Date.valid_date?(date_array[0], date_array[1], date_array[2])
-#     return true
-#   else
-#     return false
-#   end
-# end
